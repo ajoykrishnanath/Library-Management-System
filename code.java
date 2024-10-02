@@ -21,7 +21,6 @@ class Library{
                 System.out.println("Enter the serial no. of the new book you want to add to library:");
                 books.add(sc.nextLine());
                 showAvailableBooks();
-                break;
             }else if (i.equals("n")){
                 System.out.println("Ok");
                 break;
@@ -37,11 +36,19 @@ class Library{
             String i=sc.nextLine();
             if(i.equals("y")){
                 showAvailableBooks();
-                System.out.println("Enter the serial no. of the book you want to issue:");
-                String s= sc.nextLine();
-                ib.add(s);
-                books.remove(s);
-                showAvailableBooks();
+                while (true){
+                    System.out.println("Enter the serial no. of the book you want to issue:");
+                    String s= sc.nextLine();
+                    if (books.contains(s)){
+                        ib.add(s);
+                        books.remove(s);
+                        showAvailableBooks();
+                        break;
+                    }
+                    else{
+                        System.out.println("Invalid input!");
+                    }
+                }
             }
             else if (i.equals("n")){
                 System.out.println("Ok");
@@ -61,11 +68,19 @@ class Library{
             String i=sc.nextLine();
             if(i.equals("y")){
                 issuedBooks();
-                System.out.println("Enter the serial no. of the book you want to return:");
-                String r= sc.nextLine();
-                books.add(r);
-                ib.remove(r);
-                showAvailableBooks();
+                while (true){
+                    System.out.println("Enter the serial no. of the book you want to return:");
+                    String r= sc.nextLine();
+                    if (ib.contains(r)){
+                        books.add(r);
+                        ib.remove(r);
+                        showAvailableBooks();
+                        break;
+                    }
+                    else{
+                        System.out.println("Invalid input!!");
+                    }
+                }
             }
             else if (i.equals("n")){
                 System.out.println("Ok");
