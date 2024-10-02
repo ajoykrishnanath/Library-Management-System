@@ -14,27 +14,67 @@ class Library{
     ArrayList<String> ib= new ArrayList<>();
 
     public void  addBook(){
-        System.out.println("Enter the serial no. of the new book you want to add to library:");
-        books.add(sc.nextLine());
-        showAvailableBooks();
+        while (true){
+            System.out.println("Do you want to add new book in library? (y/n):");
+            String i = sc.nextLine();
+            if(i.equals("y")){
+                System.out.println("Enter the serial no. of the new book you want to add to library:");
+                books.add(sc.nextLine());
+                showAvailableBooks();
+                break;
+            }else if (i.equals("n")){
+                System.out.println("Ok");
+                break;
+            }
+            else{
+                System.out.println("Invalid input");
+            }
+        }
     }
     public void issueBook(){
-        showAvailableBooks();
-        System.out.println("Enter the serial no. of the book you want to issue:");
-        String s= sc.nextLine();
-        ib.add(s);
-        books.remove(s);
-        showAvailableBooks();
+        while (!books.isEmpty()){
+            System.out.println("Do you want to issue book? (y/n):");
+            String i=sc.nextLine();
+            if(i.equals("y")){
+                showAvailableBooks();
+                System.out.println("Enter the serial no. of the book you want to issue:");
+                String s= sc.nextLine();
+                ib.add(s);
+                books.remove(s);
+                showAvailableBooks();
+            }
+            else if (i.equals("n")){
+                System.out.println("Ok");
+                break;
+            }
+            else{
+                System.out.println("Invalid input!");
+            }
+        }
     }
     public void issuedBooks(){
         System.out.println("Your issued books are: "+ib);
     }
     public void returnBook(){
-        issuedBooks();
-        System.out.println("Enter the serial no. of the book you want to return:");
-        String r= sc.nextLine();
-        books.add(r);
-        showAvailableBooks();
+        while (!ib.isEmpty()){
+            System.out.println("Do you want to return book? (y/n):");
+            String i=sc.nextLine();
+            if(i.equals("y")){
+                issuedBooks();
+                System.out.println("Enter the serial no. of the book you want to return:");
+                String r= sc.nextLine();
+                books.add(r);
+                ib.remove(r);
+                showAvailableBooks();
+            }
+            else if (i.equals("n")){
+                System.out.println("Ok");
+                break;
+            }
+            else{
+                System.out.println("Invalid input!");
+            }
+        }
     }
     public void showAvailableBooks(){
         System.out.println("Serial no. of Availbale books are: "+books);
